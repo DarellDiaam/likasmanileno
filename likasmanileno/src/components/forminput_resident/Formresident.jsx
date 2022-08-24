@@ -61,8 +61,8 @@ function Formresident() {
   return (
     <div className="formresident">
 
-    <div className="title">Add Resident</div>
-          <Box sx={{ '& .MuiTextField-root': { m: 1, width: '30ch', gap:'50px' },
+    <div  className="title">Add Resident</div>
+          <Box sx={{ '& .MuiTextField-root': { m: 2, width: '55ch', gap:'50px' },
       }}
     >
       <TextField

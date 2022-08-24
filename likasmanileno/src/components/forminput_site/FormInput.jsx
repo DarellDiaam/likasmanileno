@@ -44,7 +44,7 @@ import axios from 'axios'
     }
     return(
         <div className="forminput">
-        <Box  component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }}}
+        <Box  component="form" sx={{ '& .MuiTextField-root': { m: 2, width: '55ch' }}}
         noValidate
         autoComplete="off">
         <div>
@@ -63,7 +63,7 @@ import axios from 'axios'
           id="outlined-required"
           label="Address"
           placeholder="Jhocson Street Sampaloc Manila"
-          style={{width:"35vw"}}
+          
 
           onChange={(e) => setAddress(e.target.value)}
         />
