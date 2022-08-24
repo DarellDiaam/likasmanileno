@@ -6,6 +6,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios'
 
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
+
 
 // const FormInput = () =>{
   function FormInput() {
@@ -97,6 +104,7 @@ import axios from 'axios'
             shrink: true,
           }}
         />
+
         <TextField
           required
           id="outlined-number"
@@ -107,33 +115,37 @@ import axios from 'axios'
             shrink: true,
           }}
         />
-        <TextField
-          //  required
-          id="outlined-required"
-          label="Emergency Vechicles"
-          onChange={(e) => setEvehicle(e.target.value)}
-        />
-        <TextField
-           required
-          id="outlined-required"
-          label="First Aids"
-          placeholder="Ready"
-          onChange={(e) => setFirstAid(e.target.value)}
-        />
-         <TextField
-           required
-          id="outlined-required"
-          label="Officials"
-          placeholder="Ready"
-          onChange={(e) => setOfficial(e.target.value)}
-        />
-         <br/>
+
+          <div className="radioButton">
+          <FormLabel id="demo-row-radio-buttons-group-label">First Aid</FormLabel>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+          >
+            <FormControlLabel value="available" control={<Radio />} label="Available" />
+            <FormControlLabel value="notA" control={<Radio />} label="N/A" />
+          </RadioGroup>
+
+          <FormLabel  id="demo-row-radio-buttons-group-label">Relief Goods</FormLabel>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+          >
+            <FormControlLabel value="available" control={<Radio />} label="Available" />
+            <FormControlLabel value="notA" control={<Radio />} label="N/A" />
+          </RadioGroup>
+
+          
+          </div>
+        
         <TextField
            required
           id="outlined-required"
           label="Description"
           placeholder="Type here"
-          style={{width:"81.5vw"}}
+          style={{width:"83vw"}}
           onChange={(e) => setDescription(e.target.value)}
         />
         

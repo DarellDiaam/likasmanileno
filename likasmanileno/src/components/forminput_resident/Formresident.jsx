@@ -5,6 +5,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
 
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
 
 //Team name : BingBong
 function Formresident() {
@@ -99,7 +105,8 @@ function Formresident() {
       id="demo-helper-text-misaligned-no-helper" 
       label="Username" 
       onChange={(e) => setUsername(e.target.value)}
-    /><TextField 
+    />
+    <TextField 
       id="demo-helper-text-misaligned-no-helper" 
       label="Password" 
       type="password"
