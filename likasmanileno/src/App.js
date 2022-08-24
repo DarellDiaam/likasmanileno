@@ -16,7 +16,6 @@ import {
   Route,
 } from "react-router-dom";
 import SiteInfo from "./pages/siteinfo/SiteInfo";
-import EditResident from "./pages/EditResident/EditResident";
 import Editesite from "./pages/EditSite/Editesite";
 
 function App() {
@@ -33,7 +32,6 @@ function App() {
           <Route index element={<List/>}/>
           <Route path="new" element={<New/>}/>
           <Route path="userId" element={<Single/>}/>
-          <Route path="editresident" element={<EditResident/>}/>
         </Route>
          {/*End Routes for Residents*/}
         <Route path="hotline" element={<Hotline/>}/> 
