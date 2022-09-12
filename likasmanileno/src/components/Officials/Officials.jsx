@@ -1,8 +1,13 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import "./officials.scss"
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const columns = [
     { field: 'id', 
@@ -71,19 +76,91 @@ const columns = [
 
 
 function Officials() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div className='officialtable'>
     <div className='datatableTitle'>
     Officials
+    <button onClick={handleClickOpen}  style={{textDecoration:"none"}} className="link"> 
+      Add Admin
+      </button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle style={{fontWeight: 500,}}>ADD ADMIN ACCOUNT </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To make an account for your officials, please fill out the form below.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="firstName"
+            label="First Name"
+            fullWidth
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="lastName"
+            label="Last Name"
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="age"
+            label="Age"
+            Width='5'
+          />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <TextField
+            autoFocus
+            style={{maxlength: 11,}}
+            margin="dense"
+            id="contact"
+            label="Contact#"
+            Width='15'
+            maxlength='11'
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="address"
+            label="Address"
+            type="email"
+            fullWidth
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="email"
+            label="Email Address"
+            type="email"
+            fullWidth
+          />
+        
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Add</Button>
+        </DialogActions>
+      </Dialog>
     </div>
+    
 
     <DataGrid
         rows={rows}
         columns={columns}
         pageSize={9}
         rowsPerPageOptions={[10]}
-        checkboxSelection
-        
+
       />      
     </div>
   )
