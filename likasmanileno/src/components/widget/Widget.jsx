@@ -37,15 +37,36 @@ const Widget = ({ type }) => {
     useEffect(() => {
         const fetchPosts = async () => {
             axios.post('http://localhost:4000/app/getUsers')
+            .then(res => {
+                console.log(res);
+                setTotalUser(res.DataUser.length);
+            }).catch(err => {
+                console.log(err);
+            })
+                
                 .then(res => {
                     console.log(res);
-                    setTotalUser(res.DataUser.length);
                     setTotalSenior(res.DataSenior.length);
+                }).catch(err => {
+                    console.log(err);
+                })
+
+                .then(res => {
+                    console.log(res);
                     setTotalFamilies(res.DataFamilies.length);
+                  
+                }).catch(err => {
+                    console.log(err);
+                })
+
+                .then(res => {
+                    console.log(res);
                     setTotalSites(res.DataSites.length);
                 }).catch(err => {
                     console.log(err);
                 })
+
+
         };
         fetchPosts();
     }, 
@@ -64,7 +85,7 @@ const Widget = ({ type }) => {
         case"senior":
         DataSenior={
             title:"SENIOR CITIZENS",
-            isSenior: true,
+            isUser: true,
             link:"Compared to last month",
             icon:(<ElderlyIcon className="icon" style={{color:"#FDF02D", backgroundColor:"#0047AB"}}/>),
         };
@@ -85,7 +106,6 @@ const Widget = ({ type }) => {
             icon:(<HouseIcon className="icon" style={{color:"#FDF02D", backgroundColor:"#0047AB"}}/>),
         };
         break;
-
         default:
         break;
     }
@@ -116,6 +136,10 @@ const Widget = ({ type }) => {
         <span className="counter">{DataSites.isSites} {totalSites} </span>
         <span className="link">{DataSites.link}</span>
         </div>
+
+
+
+        
         <div className="right">
             <div className="percentage positive">
                 <ArrowDropUpIcon/>

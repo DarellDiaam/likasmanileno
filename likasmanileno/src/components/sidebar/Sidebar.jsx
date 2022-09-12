@@ -41,6 +41,13 @@ function Sidebar() {
                 </li>
                 </Link>
 
+                <Link to="/admin" style={{textDecoration:"none"}}>
+                <li>
+                <PersonIcon className="icons"/>
+                <span>Officials</span>
+                </li>
+                </Link>
+
                 <p className="title">HOTLINES</p>
                 <Link to="/hotline" style={{textDecoration:"none"}}>
                 <li>

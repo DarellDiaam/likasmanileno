@@ -7,6 +7,9 @@ import Hotline from "./pages/hotline/Hotline";
 import Sites from "./pages/sites/Sites";
 import Newsite from "./pages/newsite/Newsite";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import SiteInfo from "./pages/siteinfo/SiteInfo";
+import Editesite from "./pages/EditSite/Editesite";
+
 
 //import axios from 'axios'
 
@@ -15,8 +18,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import SiteInfo from "./pages/siteinfo/SiteInfo";
-import Editesite from "./pages/EditSite/Editesite";
+import Admin from "./pages/Admin/Admin";
+
 
 function App() {
   return (
@@ -27,6 +30,8 @@ function App() {
      <Route path="/">
         <Route index element={<Home />}/>
         <Route path="login" element={<Login/>}/> 
+        <Route path="admin" element={<Admin/>}/> 
+
          {/*Routes for Residents*/}
         <Route path="users">
           <Route index element={<List/>}/>

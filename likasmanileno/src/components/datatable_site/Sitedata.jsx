@@ -1,6 +1,5 @@
 import './sitedata.scss';
 // import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
 import { Link } from "react-router-dom";
 import React,{useEffect,useState} from "react";
 import axios from "axios";
@@ -119,7 +118,6 @@ function Sitedata(props) {
           <TableCell className="tableCell">Kitckens</TableCell>
           <TableCell className="tableCell">Emergency Vehicles</TableCell>
           <TableCell className="tablecell">First Aid</TableCell>
-          <TableCell className="tablecell">Officials</TableCell>
           <TableCell className="tablecell">Description</TableCell>
 
         </TableRow>
