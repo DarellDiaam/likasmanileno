@@ -12,7 +12,15 @@ import {MapContainer, Marker, Popup, TileLayer, useMap} from 'react-leaflet'
 import "leaflet/dist/leaflet.css"
 import L from "leaflet";
 import { Link } from "react-router-dom";
-// import Modal from "../modal/Modal";
+
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Stack from '@mui/material/Stack';
 
 const icon = L.icon({
   iconUrl:'./pin.png',
@@ -44,6 +52,16 @@ function ResetCenterView(props){
   }
 
 function List(props) {
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   
   const [users,setUser] = useState([]);
   useEffect(() => {
@@ -63,6 +81,8 @@ function List(props) {
 
   //get first and lastname
   const setID=(firstName, lastName) =>{
+
+    
     
     const data = {
       firstName: firstName,
@@ -105,12 +125,88 @@ function List(props) {
     <div className="datatableTitle">
       Residents
 
-      <Link to="/users/new" style={{textDecoration:"none"}} className="link"> 
+      {/* <Link to="/users/new" style={{textDecoration:"none"}} className="link"> 
       Add Resident
-      </Link>
+      </Link> */}
 
-      {/* <button className="openModalBtn" onClick={() => {setOpenModal(true)}}>Add Resident</button>
-      {openModal && <Modal closeModal={setOpenModal} />} */}
+      <button onClick={handleClickOpen}  style={{textDecoration:"none",}} className="link"> 
+      Add Resident
+      </button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle style={{fontWeight: 500,}}>ADD RESIDENT </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Fill out the form below to add an resident account that lives on your vacinity.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="firstName"
+            label="First Name"
+            fullWidth
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="lastName"
+            label="Last Name"
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="address"
+            label="Address"
+            fullWidth
+          />
+             <TextField
+            autoFocus
+            maxlength='11'
+            margin="dense"
+            id="contact"
+            label="Contact#"
+            Width='15'
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="username"
+            label="Username"
+            type="username"
+            fullWidth
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="password"
+            label="Password"
+            type="password"
+            fullWidth
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="confirmPass"
+            label="Confirm Password"
+            type="password"
+            fullWidth
+          />
+        
+        </DialogContent>
+        <DialogActions>
+        <Stack  direction="row" spacing={2}>
+        <Button onClick={handleClose} variant="contained">Cancel</Button>
+      <Button onClick={handleClose}  variant="outlined">Add</Button>
+          {/* <Button onClick={handleClose}  variant="outlined" color="error">
+            Cancel
+          </Button>
+          <Button  onClick={handleClose} variant="contained" color="success">
+            Add
+          </Button> */}
+        </Stack>
+        
+        </DialogActions>
+      </Dialog>
 
     </div>
     

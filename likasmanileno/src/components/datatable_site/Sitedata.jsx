@@ -14,6 +14,22 @@ import {MapContainer, Marker, Popup, TileLayer, useMap} from 'react-leaflet'
 import "leaflet/dist/leaflet.css"
 import L from "leaflet";
 
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
+
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Stack from '@mui/material/Stack';
+
 const icon = L.icon({
   iconUrl:'./pin.png',
   iconSize:[38, 38]
@@ -45,6 +61,20 @@ function ResetCenterView(props){
 
 function Sitedata(props) {
 
+  //////////////////////////// modal function
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  ////////////////////////////
+
+  //database
   const [users,setUser] = useState([]);
   useEffect(() => {
       const fetchPosts = async () => {
@@ -77,6 +107,7 @@ function Sitedata(props) {
   
   }
 
+    //Map
   const { selectPosition } = props;
   const locationSelection = [selectPosition?.lat, selectPosition?.lon];
 
@@ -91,7 +122,7 @@ function Sitedata(props) {
           { selectPosition && (
           <Marker position={locationSelection} icon={icon}>
             <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+           
             </Popup>
           </Marker>
        )}
@@ -101,9 +132,115 @@ function Sitedata(props) {
 
          <div className="datatableTitle">
       Evacuation Sites
-      <Link to="/sites/Newsite" style={{textDecoration:"none"}} className="link"> 
+
+      <button onClick={handleClickOpen}  style={{textDecoration:"none"}} className="link"> 
       Add Site
-      </Link>
+      </button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle style={{fontWeight: 500,}}>ADD EVACAUATION SITE </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Fill out the form below with the exact Inofrmation of the Evacuation Site.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="evacName"
+            label="Evacuation Site"
+            fullWidth
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="address"
+            label="Address"
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="capacity"
+            label="Capacity"
+            type="number"
+            Width='15'
+          />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <TextField
+            autoFocus
+            margin="dense"
+            id="rooms"
+            label="Rooms"
+            type="number"
+            Width='15'
+          />
+            <TextField
+            autoFocus
+            margin="dense"
+            id="restRooms"
+            label="Rest Rooms"
+            type="number"
+            Width='15'
+          />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <TextField
+            autoFocus
+            margin="dense"
+            id="kitchen"
+            label="Kitchens"
+            type="number"
+            Width='15'
+          />
+         
+         <div className="radioButton">
+          <FormLabel id="demo-row-radio-buttons-group-label">First Aid</FormLabel>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+          >
+            <FormControlLabel value="available" control={<Radio />} label="Available" />
+            <FormControlLabel value="notA" control={<Radio />} label="N/A" />
+          </RadioGroup>
+
+          <FormLabel  id="demo-row-radio-buttons-group-label">Relief Goods</FormLabel>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+          >
+            <FormControlLabel value="available" control={<Radio />} label="Available" />
+            <FormControlLabel value="notA" control={<Radio />} label="N/A" />
+          </RadioGroup>
+          </div>
+
+           <TextField
+            autoFocus
+            margin="dense"
+            id="description"
+            label="Description"
+            type="descritopn"
+            fullWidth
+          />
+        
+        </DialogContent>
+        <DialogActions>
+        <Stack  direction="row" spacing={2}>
+        <Button onClick={handleClose} variant="contained">Cancel</Button>
+      <Button onClick={handleClose}  variant="outlined">Add</Button>
+          {/* <Button onClick={handleClose}  variant="outlined" color="error">
+            Cancel
+          </Button>
+          <Button  onClick={handleClose} variant="contained" color="success">
+            Add
+          </Button> */}
+        </Stack>
+        
+        </DialogActions>
+      </Dialog>
+
+      {/* <Link to="/sites/Newsite" style={{textDecoration:"none"}} className="link"> 
+      Add Site
+      </Link> */}
     </div>
     
     <TableContainer component={Paper} className="table">

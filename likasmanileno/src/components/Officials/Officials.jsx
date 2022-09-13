@@ -8,6 +8,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Stack from '@mui/material/Stack';
+
 
 const columns = [
     { field: 'id', 
@@ -148,8 +150,17 @@ function Officials() {
         
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add</Button>
+        <Stack  direction="row" spacing={2}>
+        <Button onClick={handleClose} variant="contained">Cancel</Button>
+      <Button onClick={handleClose}  variant="outlined">Add</Button>
+          {/* <Button onClick={handleClose}  variant="outlined" color="error">
+            Cancel
+          </Button>
+          <Button  onClick={handleClose} variant="contained" color="success">
+            Add
+          </Button> */}
+        </Stack>
+        
         </DialogActions>
       </Dialog>
     </div>
