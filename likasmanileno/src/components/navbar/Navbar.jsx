@@ -14,7 +14,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';function Navba
                 </div>
 
                 <div className="item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Z3W2C0eZEZIVC0Wz-VYWxYe9agaXhlp1TFB1xwM&s" alt="" className="avatar" />
+                {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Z3W2C0eZEZIVC0Wz-VYWxYe9agaXhlp1TFB1xwM&s" alt="" className="avatar" /> */}
                 </div>
             </div>
         </div>

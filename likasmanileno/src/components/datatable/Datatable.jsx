@@ -221,7 +221,7 @@ function List(props) {
           <TableCell className="tableCell">Date Admitted</TableCell>
           <TableCell className="tableCell">Site Transfered</TableCell>
           <TableCell className="tableCell">Status</TableCell>
-          <TableCell className="tablecell">actions</TableCell>
+          <TableCell className="tablecell">Actions</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
