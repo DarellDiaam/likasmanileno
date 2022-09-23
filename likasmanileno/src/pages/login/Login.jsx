@@ -1,5 +1,5 @@
 import "./login.scss";
-import logo from '../images/Landing_logo3.png';
+import logo from '../images/LandingIcon.png';
 import { useState } from "react";
 import axios from 'axios';
 import * as React from 'react';

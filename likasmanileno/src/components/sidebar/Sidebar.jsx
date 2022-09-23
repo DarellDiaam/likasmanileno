@@ -12,7 +12,7 @@ function Sidebar() {
     <div className='sidebar'>
         <div className="top">
         <Link to="/" style={{textDecoration:"none"}}>
-        <span className="logo">Likas <span style={{color:"#FDF02D"}}>Manileño</span></span>
+        <span className="logo">Likas <span style={{color:"#F6BE00"}}>Manileño</span></span>
         </Link>
         </div>
         <div className="center">
