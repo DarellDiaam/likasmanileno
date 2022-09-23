@@ -105,7 +105,7 @@ function handleLogin(){
               <input placeholder="Username" className="loginInput" required onChange={(e) => setLusername(e.target.value)}/>
               {/* <input placeholder="Password" className="loginInput" type="password" required onChange={(e) => setLoginpassword(e.target.value)}/> */}
               {/* Password input */}
-              <FormControl sx={{ m: 1, width: '46ch' }} variant="outlined">
+              <FormControl sx={{ m: 1, width: '43ch' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"

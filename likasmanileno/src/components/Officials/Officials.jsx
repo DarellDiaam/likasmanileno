@@ -1,5 +1,6 @@
-import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import axios, { Axios } from "axios";
+import React,{useEffect,useState} from "react";
+
 import "./officials.scss"
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -10,73 +11,21 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Stack from '@mui/material/Stack';
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
-const columns = [
-    { field: 'id', 
-    headerName: 'ID', 
-    width: 60 
-    },
 
-    { field: 'firstName', 
-    headerName: 'First name',
-    width: 170 
-    },
 
-    { field: 'lastName',
-     headerName: 'Last name',
-      width: 170 },
-    {
-      field: 'address',
-      headerName: 'Address',
-      width: 210,
-    },
+function createData(name, calories, fat, carbs, protein) {
+  return { name, calories, fat, carbs, protein };
+}
 
-    { 
-    field: 'email', 
-    headerName: 'Email', 
-    width: 200 
-    },
-
-    {
-    field: 'contact',
-    headerName: 'Contact#',
-    width:'130',
-    },
-
-    {
-    field: 'age',
-    headerName: 'Age',
-    width:'100',
-    },
-
-    {
-    field: 'action',
-    headerName: 'Action',
-    width:'160',
-    },
-    
-
-   
-  ];
   
-  const rows = [
-    { id: 1, lastName: 'Dela Cruz', firstName: 'Juan', address:'Sampaloc Manila', email:'sample@gmail.com', contact:'0999999999', age: 35, },
-    { id: 2, lastName: 'Dela Cruz', firstName: 'Juan', address:'Sampaloc Manila', email:'sample@gmail.com', contact:'0999999999', age: 35 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 10, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 11, lastName: 'Dela Cruz', firstName: 'Juan', address:'Sampaloc Manila', email:'sample@gmail.com', contact:'0999999999', age: 35,  },
-
-    
-
-  ];
-
-
 function Officials() {
   const [open, setOpen] = React.useState(false);
 
@@ -87,6 +36,44 @@ function Officials() {
   const handleClose = () => {
     setOpen(false);
   };
+
+
+  const [users,setUser] = useState([]);
+  useEffect(() => {
+      const fetchPosts = async () => {
+          axios.post('http://localhost:4000/app/getUsers')
+              .then(res => {
+                  console.log(res);
+                  setUser(res.data);
+              }).catch(err => {
+                  console.log(err);
+              })
+      };
+      fetchPosts();
+  }, []);
+
+
+  //get first and lastname
+  const setID=(firstName, lastName) =>{
+
+    
+    
+    const data = {
+      firstName: firstName,
+      lastName: lastName,      
+    }
+    console.log(data)
+    axios.post('http://localhost:4000/app/deleteresident',data)
+    .then(res => {
+      if(res.data != null){
+        alert("deleted")
+      }
+    }).catch((res) =>{
+      console.log(res)
+    })
+  
+  }
+
   return (
     <div className='officialtable'>
     <div className='datatableTitle'>
@@ -147,6 +134,30 @@ function Officials() {
             type="email"
             fullWidth
           />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="username"
+            label="Username"
+            type="username"
+            fullWidth
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="password"
+            label="Password"
+            type="password"
+            fullWidth
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="confirmPass"
+            label="Confirm Password"
+            type="password"
+            fullWidth
+          />
         
         </DialogContent>
         
@@ -165,15 +176,43 @@ function Officials() {
         </DialogActions>
       </Dialog>
     </div>
-    
-
-    <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={9}
-        rowsPerPageOptions={[10]}
-
-      />      
+    <TableContainer component={Paper} className="table">
+    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <TableHead>
+        <TableRow>
+          {/* <TableCell className="tableCell">ID No.</TableCell> */}
+          <TableCell className="tableCell">First Name</TableCell>
+          <TableCell className="tableCell">Last Name</TableCell>
+          <TableCell className="tableCell">Address</TableCell>
+          <TableCell className="tableCell">Email</TableCell>
+          <TableCell className="tableCell">Contact#</TableCell>
+          <TableCell className="tablecell">Actions</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {users.map(res => (
+          <TableRow key={res.id}>
+            {/* <TableCell>{res._id}</TableCell> */}
+            <TableCell className="tableCell">{res.firstName}</TableCell>
+            <TableCell  className="tableCell">{res.lastName}</TableCell>
+            <TableCell  className="tableCell">{res.contactNo}</TableCell>
+            <TableCell  className="tableCell">{res.dateAdmitted}</TableCell>
+            <TableCell  className="tableCell">{res.siteT}</TableCell>
+            <TableCell  className="tableCell"><span className={`status ${res.status}`}>{res.status}</span>
+            
+            {/* <TableCell  className="tableCell">{res.username}</TableCell>
+            <TableCell  className="tableCell">{res.password}</TableCell> */}
+            </TableCell>
+          
+            <TableCell className="tableCell">
+            <button onClick={() =>setID(res.firstName,res.lastName)}>Delete</button>
+            </TableCell> 
+            
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>
     </div>
   )
 }
